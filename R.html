@@ -4,6 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>My Love</title>
+<body>
+  <div id="content" style="display:none;">
 <style>
   html, body {
     margin: 0; padding: 0; height: 100%;
@@ -258,7 +260,25 @@
     unmuteBtn.style.display = 'inline-block';
   });
 </script>
+</body>
 
+  </div>
+  <script>
+  const PASSWORD = "11/04/2025"; // Set your password here
+  const content = document.getElementById("content");
+
+  function askPassword() {
+    let pass = prompt("Please enter the date of our first kiss(in DD/MM/YYYY format)");
+    if (pass === PASSWORD) {
+      content.style.display = "block";
+    } else {
+      alert("Incorrect password. Please try again.");
+      askPassword();
+    }
+  }
+
+  window.onload = askPassword;
+</script>
 
 </body>
 </html>
