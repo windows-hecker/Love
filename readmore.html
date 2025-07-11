@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Read More</title>
+<style>
+  html, body {
+    margin: 0; padding: 20px;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ffe4e1 0%, #fff0f5 100%);
+    color: black;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    height: auto;  /* or just remove any height: 100vh or fixed height */
+    overflow-y: auto;
+  }
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #ff69b4;
+    z-index: 2;
+  }
+  p {
+    max-width: 600px;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    z-index: 2;
+  }
+  a.back-button {
+    display: block;
+    padding: 12px 28px;
+    background-color: #ff69b4;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    z-index: 2;
+    position: fixed;
+    bottom: 20px;
+    left: 200px;
+    z-index: 10;
+    padding: 12px 28px;
+    background-color: #ff69b4;
+    color: white;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    margin: 30px auto 0; /* 30px top margin, auto sides centers it */
+    width: max-content;  /* shrink to button width */
+  }
+  a.back-button:hover {
+    background-color: #ff85c1;
+  }
+.corner-img {
+    position: absolute;
+    width: 120px;    /* or your desired size */
+    height: 120px;
+    object-fit: cover;
+    opacity: 0.85;
+    border-radius: 50%;
+    z-index: 1;
+    animation: floatImage 4s ease-in-out infinite alternate;
+}
+a.read-more-btn, .thank-you-btn {
+    padding: 12px 28px;
+    background-color: #ff69b4;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease, box-shadow 0.6s ease-in-out;
+    margin: 10px 0;
+    position: relative;
+    z-index: 2;
+    box-shadow:
+      0 0 8px #ff69b4,
+      0 0 20px #ff69b4,
+      0 0 40px #ff69b4;
+  }
+  .top-left { top: 130px; left: 10px; animation-delay: 0s; }
+  .top-right { top: 130px; right: 10px; animation-delay: 1s; }
+  .bottom-left { bottom: 10px; left: 10px; animation-delay: 2s; }
+  .bottom-right { bottom: 10px; right: 10px; animation-delay: 3s; }
+  @keyframes floatImage {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-15px); }
+  }
+  @media (max-width: 600px) {
+    .corner-img {
+      width: 100px;
+      height: 100px;
+    }
+  }
+  .heart {
+    position: fixed;
+    z-index: 0;
+    pointer-events: none;
+    user-select: none;
+    color: rgba(255, 105, 180, 0.8);
+    font-size: 24px;
+    animation-name: floatHearts;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+ @keyframes floatHearts {
+    0% {
+        transform: translateX(0px) translateY(100vh) scale(0.8);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    50% {
+        transform: translateX(30px) translateY(50vh) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-30px) translateY(-10vh) scale(1.2);
+        opacity: 0;
+    }
+}
+
+</style>
+</head>
+<body>
+
+  <!-- Floating rounded corner images -->
+  <img src="https://i.postimg.cc/jj66dHLm/PXL-20250508-074252543.jpg" class="corner-img top-left" alt="Top Left">
+  <img src="https://i.postimg.cc/FHCbfrZg/Screenshot-20250426-194826.png" class="corner-img top-right" alt="Top Right">
+  <img src="https://i.postimg.cc/sxMZS7gV/PXL-20250507-120434962.jpg" class="corner-img bottom-left" alt="Bottom Left">
+  <img src="https://i.postimg.cc/zfqb79G2/Ghibli-image.png" class="corner-img bottom-right" alt="Bottom Right">
+
+  <h2>More I Want to Say...</h2>
+
+  <p>
+    Dear Rashmi,<br><br>
+    I am truly sorry for everything that happened, and I want you to know how much you mean to me.
+    You deserve all the happiness in the world, and I promise to work on myself and to make things right.
+    I am very very sorry for hurting you and making you cry, I hope you don't regret the decion of chosing me over and over again.
+    Tonight you showed me love I haven't experienced in a long time. You made me feel safe and like I was a child again I was so vulnerable
+    and you gave me unconditional love, I forgot how warm love feels until you reminder me. I am truly sorry for making your life more difficult
+    but I cannot live without you and I hope you will forgive me. Rest Assured I will also provide you with the unconditional love you gave me<br><br>
+    With all my love,<br>
+    Romit
+  </p>
+
+<button id="unmuteBtn" class="thank-you-btn">Tap to Unmute Music</button>
+<button id="muteBtn" class="thank-you-btn" style="display:none;">🔇 Mute Music</button>
+<a class="read-more-btn" href="R.html">← Back</a>
+
+<script>
+  // Floating Hearts
+  const numHearts = 30;
+  for (let i = 0; i < numHearts; i++) {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.textContent = '❤️';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.fontSize = (16 + Math.random() * 20) + 'px';
+    heart.style.animationDuration = (4 + Math.random() * 4) + 's';
+    heart.style.animationDelay = (Math.random() * 6) + 's';
+    heart.style.animationDirection = Math.random() > 0.5 ? 'normal' : 'reverse';
+    document.body.appendChild(heart);
+  }
+</script>
+<audio id="bgMusic" src="readmore_music.mp3" loop autoplay muted></audio>
+<script>
+  const audio = document.getElementById('bgMusic');
+  const unmuteBtn = document.getElementById('unmuteBtn');
+  const muteBtn = document.getElementById('muteBtn');
+
+  document.addEventListener('DOMContentLoaded', () => {
+    audio.play().catch(() => {
+      // User gesture required, handled below
+    });
+  });
+
+  unmuteBtn.addEventListener('click', () => {
+    audio.muted = false;
+    audio.volume = 0.5;
+    audio.play();
+    unmuteBtn.style.display = 'none';
+    muteBtn.style.display = 'inline-block';
+  });
+
+  muteBtn.addEventListener('click', () => {
+    audio.muted = true;
+    muteBtn.style.display = 'none';
+    unmuteBtn.style.display = 'inline-block';
+  });
+</script>
+
+</body>
+</html>

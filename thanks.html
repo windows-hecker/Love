@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Thank You</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  h1 {
+    margin-bottom: 20px;
+    color: #ff69b4;
+    text-align: center;
+    z-index: 2;
+  }
+
+  .slideshow-container {
+    position: relative;
+    max-width: 90%;
+    max-height: 60vh;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    margin-bottom: 20px;
+    z-index: 2;
+  }
+
+  .slide {
+    display: none;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+  }
+
+  .caption {
+    font-size: 1.1rem;
+    text-align: center;
+    max-width: 90%;
+    z-index: 2;
+  }
+
+  a.back-button, button.back-button {
+    display: inline-block;
+    padding: 12px 28px;
+    background-color: #ff69b4;
+    color: white;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, box-shadow 0.6s ease-in-out;
+    margin-top: 20px;
+    z-index: 2;
+    border: none;
+    cursor: pointer;
+    box-shadow:
+      0 0 8px #ff69b4,
+      0 0 20px #ff69b4,
+      0 0 40px #ff69b4;
+  }
+
+  a.back-button:hover, button.back-button:hover {
+    background-color: #ff85c1;
+    box-shadow:
+      0 0 15px #ff85c1,
+      0 0 30px #ff85c1,
+      0 0 50px #ff85c1,
+      0 0 70px #ff85c1;
+  }
+
+  .heart {
+    position: fixed;
+    bottom: -50px;
+    font-size: 24px;
+    opacity: 0.7;
+    color: #ff69b4;
+    animation-name: floatHearts;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    z-index: 1;
+  }
+
+  @keyframes floatHearts {
+    0% { transform: translateX(0) translateY(0) scale(1); opacity: 0; }
+    10% { opacity: 1; }
+    100% { transform: translateX(30px) translateY(-120vh) scale(1.3); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Thank You For Everything</h1>
+
+<div class="slideshow-container">
+  <img class="slide" src="https://i.postimg.cc/cJDGv5k8/IMG-20250508-WA0001-3.jpg" alt="Memory 1">
+  <img class="slide" src="https://i.postimg.cc/zDQDt3jR/image.png" alt="Memory 2">
+  <img class="slide" src="https://i.postimg.cc/mZ1hGQhS/image.png" alt="Memory 3">
+</div>
+
+<div class="caption">
+  These moments are just a few of the many memories I cherish with you. Thank you for making my world brighter and making me a better person. Your love and support mean everything to me.
+  <br>
+  I wanted to create something special for you, so I made this little Website to express my gratitude. I hope you like it!
+  I am thanking you in my own way I hope you can feel the love and care I have for you through this becaause it took me a little time to make this( more than 4 hours).
+</div>
+
+<!-- Background music autoplay muted -->
+<audio id="bgMusic" src="thanks_music.mp3" loop autoplay muted></audio>
+
+<!-- Tap to unmute button -->
+<button id="unmuteBtn" class="back-button">Tap to Unmute Music</button>
+<button id="muteBtn" class="back-button" style="display:none;">🔇 Mute Music</button>
+
+<a href="R.html" class="back-button">Back</a>
+
+<script>
+  let slideIndex = 0;
+  const slides = document.getElementsByClassName("slide");
+
+  function showSlides() {
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) { slideIndex = 1; }
+    slides[slideIndex - 1].style.display = "block";
+    setTimeout(showSlides, 3000); // Change image every 3 seconds
+  }
+  showSlides();
+
+  // Floating hearts
+  const numHearts = 30;
+  for (let i = 0; i < numHearts; i++) {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.textContent = '❤️';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.fontSize = (16 + Math.random() * 20) + 'px';
+    heart.style.animationDuration = (4 + Math.random() * 6) + 's';
+    heart.style.animationDelay = (Math.random() * 10) + 's';
+    heart.style.animationDirection = Math.random() > 0.5 ? 'normal' : 'reverse';
+    document.body.appendChild(heart);
+  }
+
+  // Unmute music on button click
+
+  const audio = document.getElementById('bgMusic');
+  const unmuteBtn = document.getElementById('unmuteBtn');
+  const muteBtn = document.getElementById('muteBtn');
+
+  document.addEventListener('DOMContentLoaded', () => {
+    audio.play().catch(() => {
+      // User gesture required, handled below
+    });
+  });
+
+  unmuteBtn.addEventListener('click', () => {
+    audio.muted = false;
+    audio.volume = 0.5;
+    audio.play();
+    unmuteBtn.style.display = 'none';
+    muteBtn.style.display = 'inline-block';
+  });
+
+  muteBtn.addEventListener('click', () => {
+    audio.muted = true;
+    muteBtn.style.display = 'none';
+    unmuteBtn.style.display = 'inline-block';
+  });
+</script>
+
+</body>
+</html>
